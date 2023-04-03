@@ -1,15 +1,15 @@
-//your code here
+let touristSpots = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
 
-const bands = ['The Beatles', 'Led Zeppelin', 'Pink Floyd', 'The Rolling Stones', 'The Who'];
-
-// Function to strip articles from the beginning of a string
-function stripArticle(str) {
-  return str.replace(/^(a |an |the )/i, '').trim();
+function strip (word) {
+    let regex = new RegExp('^(a |the |an )', 'i')
+    return word.replace(regex, '').trim()
 }
 
-// Sort the array in lexicographic order excluding articles
-const sortedBands = bands.sort((a, b) => stripArticle(a) > stripArticle(b) ? 1 : -1);
+const sortedBands = touristSpots.sort((a, b) => (strip(a) > strip(b)) ? 1 : -1)
 
-// Get the ul element and populate it with li elements containing the sorted band names
-const ul = document.querySelector('#bands');
-ul.innerHTML = sortedBands.map(band => `<li>${band}</li>`).join('');
+
+/** 
+ * add ul list in HTML
+ **/
+document.querySelector('#bands').innerHTML = 
+    sortedBands.map(item => `<li>${item}</li>`).join('')
